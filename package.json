@@ -13,6 +13,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "slack-edge": "^0.13.3"
+    "slack-edge": "^0.13.3",
+    "yaml": "^2.4.5"
   }
 }
