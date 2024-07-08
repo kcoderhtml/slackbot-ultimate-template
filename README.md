@@ -1,7 +1,20 @@
+<!-- omit in toc -->
 # slackbot-ultimate-template
 
 For the ultimate slackbot experience, use this template to get started with your own slackbot!
 
+- [Development](#development)
+  - [Database](#database)
+  - [Templates](#templates)
+  - [Logging System](#logging-system)
+    - [Slog](#slog)
+    - [Clog](#clog)
+    - [Blog](#blog)
+  - [Feature system](#feature-system)
+- [Contributing](#contributing)
+
+
+<!-- omit in toc -->
 ## Getting Started
 
 1. Clone this repository
@@ -68,7 +81,7 @@ bunx prisma db push
 
 This project uses the template system developed by @jaspermayone. To add a new template, edit the `lib/templates.yaml` file and add a new template. The key of the template is the name of the template and the value is an array of strings that are the messages that the template will send. The messages can be any string and can include variables that will be replaced with the values of the passed variables from the `data` interface in `lib/template.ts`. The variables are surrounded by `${}` and the name of the variable is inside the curly braces.
 
-
+<!-- omit in toc -->
 #### Template Example:
 ```yaml
 app:
@@ -79,6 +92,7 @@ app:
 
 To add a new variable simply add it to the `data` interface in `lib/template.ts` and then use it in the template file!
 
+<!-- omit in toc -->
 #### Date Interface Example:
 ```typescript
 interface data {
@@ -88,6 +102,7 @@ interface data {
 
 The types for the template are sadly not automatically generated so you will have to manually add the new keys and names to the `template` type in `lib/template.ts`
 
+<!-- omit in toc -->
 #### Template Type Example:
 ```typescript
 type template = 'app.startup'
@@ -99,7 +114,7 @@ This project uses the logging system developed by @jaspermayone (with some modif
 
 The system is stored in `lib/Logger.ts` and its queuing system is stored in `lib/queue.ts`. The logger exports 3 functions: `slog`, `clog`, and `blog`.
 
-#### Slog:
+#### Slog
 `slog` is for sending messages to slack and takes a `logMessage` string and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to. 
 ```typescript
 async function slog(
@@ -141,6 +156,7 @@ type LogType = 'info' | 'start' | 'cron' | 'error'
 
 The feature system is based on writing your features as seperate independent files in the `features/` directory each exporting a single default async inline function with a void promise. These functions are exported in the `features/index.ts` file and are then imported and ran at startup in `index.ts`. The features are run in the order that they are imported in the `features/index.ts` file and will log their name as exported in the `features/index.ts` file.
 
+<!-- omit in toc -->
 #### Example:  
 `features/feature.ts`
 ```typescript
