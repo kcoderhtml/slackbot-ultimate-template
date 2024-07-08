@@ -12,11 +12,12 @@ For the ultimate slackbot experience, use this template to get started with your
 6. Run the slackbot
 
 ### Prerequisites
-- Bun
-- some knowledge of typescript
-- a slack workspace
-- an enterprising mind!
-- a computer
+
+-   Bun
+-   some knowledge of typescript
+-   a slack workspace
+-   an enterprising mind!
+-   a computer
 
 ### Installing
 
@@ -34,7 +35,7 @@ bun install
 
 ### Running the Slackbot
 
-First migrate the db so you have a local copy of the database then you can run the dev script to start the server! 
+First migrate the db so you have a local copy of the database then you can run the dev script to start the server!
 
 ```bash
 bunx prisma migrate dev --name db
@@ -48,4 +49,5 @@ bun run ngrok
 ```
 
 ## Contributing
+
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
