@@ -22,12 +22,12 @@ oauth_config:
             - users:read
 settings:
     event_subscriptions:
-        request_url: https://ngrok http 3000 --domain=casual-renewing-reptile.ngrok-free.app/slack
+        request_url: https://casual-renewing-reptile.ngrok-free.app/slack
         bot_events:
             - app_home_opened
     interactivity:
         is_enabled: true
-        request_url: https://ngrok http 3000 --domain=casual-renewing-reptile.ngrok-free.app/slack
+        request_url: https://casual-renewing-reptile.ngrok-free.app/slack
     org_deploy_enabled: false
     socket_mode_enabled: false
     token_rotation_enabled: false
