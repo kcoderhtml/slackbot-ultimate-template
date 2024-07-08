@@ -93,6 +93,47 @@ Example:
 type template = 'app.startup'
 ```
 
+### Logging System
+
+This project uses the logging system developed by @jaspermayone (with some modifications of my own) to work in conjunction with the template system (I love it so much i've used in in basicaly every slackbot i've made since he told me about it lol; thats mostly why this project exists, so i can more easily spin up a slackbot with everything i need).
+
+The system is stored in `lib/Logger.ts` and its queuing system is stored in `lib/queue.ts`. The logger exports 3 functions: `slog`, `clog`, and `blog`.
+
+-   `slog` is for sending messages to slack and takes a `logMessage` string and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to. 
+```typescript
+async function slog(
+    logMessage: string,
+    location?: {
+        thread_ts?: string
+        channel: string
+    }
+): Promise<void>
+```
+
+-   `clog` is for sending messages to the console and takes a `logMessage` string and a manditory `type` string that is the type of the message (info, warn, error, etc) and logs the message to the console with a color based on the type.
+```typescript
+async function clog(
+    logMessage: string,
+    type: LogType
+): Promise<void>
+
+type LogType = 'info' | 'start' | 'cron' | 'error'
+```
+
+-  `blog` is for sending messages to both slack and the console and takes a `logMessage` string, a manditory `type` string that is the type of the message (info, warn, error, etc), and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to.
+```typescript
+async function blog(
+    logMessage: string,
+    type: LogType,
+    location?: {
+        thread_ts?: string
+        channel: string
+    }
+): Promise<void>
+
+type LogType = 'info' | 'start' | 'cron' | 'error'
+```
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
