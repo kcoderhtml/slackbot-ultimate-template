@@ -69,7 +69,7 @@ bunx prisma db push
 This project uses the template system developed by @jaspermayone. To add a new template, edit the `lib/templates.yaml` file and add a new template. The key of the template is the name of the template and the value is an array of strings that are the messages that the template will send. The messages can be any string and can include variables that will be replaced with the values of the passed variables from the `data` interface in `lib/template.ts`. The variables are surrounded by `${}` and the name of the variable is inside the curly braces.
 
 
-Example:
+#### Template Example:
 ```yaml
 app:
     startup:
@@ -79,7 +79,7 @@ app:
 
 To add a new variable simply add it to the `data` interface in `lib/template.ts` and then use it in the template file!
 
-Example:
+#### Date Interface Example:
 ```typescript
 interface data {
     environment?: string
@@ -88,7 +88,7 @@ interface data {
 
 The types for the template are sadly not automatically generated so you will have to manually add the new keys and names to the `template` type in `lib/template.ts`
 
-Example:
+#### Template Type Example:
 ```typescript
 type template = 'app.startup'
 ```
