@@ -1,4 +1,4 @@
-import { name, slackApp } from '../index'
+import { name, slackApp, prisma } from '../index'
 
 import { blog, clog } from '../lib/Logger'
 import type { AnyHomeTabBlock } from 'slack-edge'
@@ -16,6 +16,8 @@ const appHome = async () => {
             user: payload.user,
         })
 
+        const day = new Date().toISOString().split("T")[0] + "T00:00:00.000Z";
+
         // check if the user is authorized
         if (
             user.user?.is_owner ||
@@ -26,6 +28,23 @@ const appHome = async () => {
                 `User <@${user.user!.id}> is authorized to access the analytics page.`,
                 'info'
             )
+
+            // update the analytics table
+            await prisma.analytics.upsert({
+                where: {
+                    date: day,
+                },
+                create: {
+                    date: day,
+                    dashboardOpensAuthorized: 1,
+                },
+                update: {
+                    dashboardOpensAuthorized: {
+                        increment: 1,
+                    },
+                },
+            })
+
             // update the home tab
             await context.client.views.publish({
                 user_id: payload.user,
@@ -40,6 +59,23 @@ const appHome = async () => {
                 `User <@${user.user!.id}> is not authorized to access the analytics page.`,
                 'error'
             )
+
+            // update the analytics table
+            await prisma.analytics.upsert({
+                where: {
+                    date: day,
+                },
+                create: {
+                    date: day,
+                    dashboardOpensUnauthorized: 1,
+                },
+                update: {
+                    dashboardOpensUnauthorized: {
+                        increment: 1,
+                    },
+                },
+            })
+
             // update the home tab
             await context.client.views.publish({
                 user_id: payload.user,

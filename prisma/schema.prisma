@@ -11,7 +11,8 @@ datasource db {
 }
 
 model Analytics {
-  id             String   @id @default(uuid())
-  date           DateTime @default(now())
-  dashboardOpens Int      @default(0)
+  id                         String   @id @default(uuid())
+  date                       DateTime @unique @default(now())
+  dashboardOpensAuthorized   Int      @default(0)
+  dashboardOpensUnauthorized Int      @default(0)
 }
