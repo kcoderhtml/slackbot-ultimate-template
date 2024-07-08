@@ -79,7 +79,7 @@ bunx prisma db push
 
 ### Templates
 
-This project uses the template system developed by @jaspermayone. To add a new template, edit the `lib/templates.yaml` file and add a new template. The key of the template is the name of the template and the value is an array of strings that are the messages that the template will send. The messages can be any string and can include variables that will be replaced with the values of the passed variables from the `data` interface in `lib/template.ts`. The variables are surrounded by `${}` and the name of the variable is inside the curly braces.
+This project uses the template system developed by [@jaspermayone](https://github.com/jaspermayone). To add a new template, edit the `lib/templates.yaml` file and add a new template. The key of the template is the name of the template and the value is an array of strings that are the messages that the template will send. The messages can be any string and can include variables that will be replaced with the values of the passed variables from the `data` interface in `lib/template.ts`. The variables are surrounded by `${}` and the name of the variable is inside the curly braces.
 
 <!-- omit in toc -->
 #### Template Example:
@@ -110,7 +110,7 @@ type template = 'app.startup'
 
 ### Logging System
 
-This project uses the logging system developed by @jaspermayone (with some modifications of my own) to work in conjunction with the template system (I love it so much i've used in in basicaly every slackbot i've made since he told me about it lol; thats mostly why this project exists, so i can more easily spin up a slackbot with everything i need).
+This project uses the logging system developed by [@jaspermayone](https://github.com/jaspermayone) (with some modifications of my own) to work in conjunction with the template system (I love it so much i've used in in basicaly every slackbot i've made since he told me about it lol; thats mostly why this project exists, so i can more easily spin up a slackbot with everything i need).
 
 The system is stored in `lib/Logger.ts` and its queuing system is stored in `lib/queue.ts`. The logger exports 3 functions: `slog`, `clog`, and `blog`.
 
