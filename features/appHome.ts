@@ -1,125 +1,129 @@
-import { name, slackApp } from "../index";
+import { name, slackApp } from '../index'
 
-import { blog, clog } from "../lib/Logger";
-import type { AnyHomeTabBlock } from "slack-edge";
+import { blog, clog } from '../lib/Logger'
+import type { AnyHomeTabBlock } from 'slack-edge'
 
-const appHome = async (
-) => {
+const appHome = async () => {
     // listen for shortcut
-    slackApp.event("app_home_opened", async ({ payload, context }) => {
+    slackApp.event('app_home_opened', async ({ payload, context }) => {
         // check if its opening the home tab
-        if (payload.tab !== "home") {
-            return;
+        if (payload.tab !== 'home') {
+            return
         }
 
         // get info about the user
         const user = await context.client.users.info({
             user: payload.user,
-        });
+        })
 
         // check if the user is authorized
         if (
             user.user?.is_owner ||
             user.user?.is_admin ||
-            process.env.ADMINS?.split(",").includes(user.user?.id!)
+            process.env.ADMINS?.split(',').includes(user.user?.id!)
         ) {
-            clog(`User <@${user.user!.id}> is authorized to access the analytics page.`, "info");
+            clog(
+                `User <@${user.user!.id}> is authorized to access the analytics page.`,
+                'info'
+            )
             // update the home tab
             await context.client.views.publish({
                 user_id: payload.user,
                 view: {
-                    type: "home",
+                    type: 'home',
                     blocks: await getSettingsMenuBlocks(true, payload.user),
                 },
-            });
-            return;
+            })
+            return
         } else {
-            blog(`User <@${user.user!.id}> is not authorized to access the analytics page.`, "error");
+            blog(
+                `User <@${user.user!.id}> is not authorized to access the analytics page.`,
+                'error'
+            )
             // update the home tab
             await context.client.views.publish({
                 user_id: payload.user,
                 view: {
-                    type: "home",
+                    type: 'home',
                     blocks: await getSettingsMenuBlocks(false, payload.user),
                 },
-            });
-            return;
+            })
+            return
         }
-    }
-    );
+    })
 }
 
-export default appHome;
+export default appHome
 
 export async function getSettingsMenuBlocks(
     allowed: boolean,
-    user: string,
+    user: string
 ): Promise<AnyHomeTabBlock[]> {
     if (!allowed) {
         return [
             {
-                type: "section",
+                type: 'section',
                 text: {
-                    type: "mrkdwn",
+                    type: 'mrkdwn',
                     text: `:gear: ${name}'s Dashboard :gear:`,
                 },
             },
             {
-                type: "divider",
+                type: 'divider',
             },
             {
-                type: "section",
+                type: 'section',
                 text: {
-                    type: "mrkdwn",
+                    type: 'mrkdwn',
                     text: `:siren-real: You are not authorized to use this app. Please contact the owners of this app ( ${process.env.ADMINS?.split(
-                        ",",
+                        ','
                     )
                         .map((admin) => `<@${admin}>`)
-                        .join(" ")} ) to get access.`,
+                        .join(' ')} ) to get access.`,
                 },
             },
-        ];
+        ]
     }
 
     // update the home tab
     return [
         {
-            type: "section",
+            type: 'section',
             text: {
-                type: "mrkdwn",
+                type: 'mrkdwn',
                 text: `:gear: ${name}'s Dashboard :gear:`,
             },
         },
         {
-            type: "divider",
+            type: 'divider',
         },
         {
-            type: "section",
+            type: 'section',
             text: {
-                type: "mrkdwn",
+                type: 'mrkdwn',
                 text: `:blobby-admission_tickets: Admins: \n\n${process.env.ADMINS?.split(
-                    ",",
+                    ','
                 )
                     .map((admin) => `<@${admin}>`)
-                    .join(" ")}`,
+                    .join(' ')}`,
             },
         },
         {
-            type: "divider",
+            type: 'divider',
         },
         {
-            type: "actions",
+            type: 'actions',
             elements: [
                 {
-                    type: "button",
+                    type: 'button',
                     text: {
-                        type: "plain_text",
-                        text: "Reload Dashboard",
+                        type: 'plain_text',
+                        text: 'Reload Dashboard',
                         emoji: true,
                     },
-                    action_id: "reloadDashboard",
+                    action_id: 'reloadDashboard',
                 },
             ],
-        }
-    ];
+        },
+    ]
 }

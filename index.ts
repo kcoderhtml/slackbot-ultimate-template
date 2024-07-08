@@ -7,10 +7,12 @@ import { blog } from './lib/Logger'
 const { version, name } = require('./package.json')
 const environment = process.env.NODE_ENV
 
-console.log(`----------------------------------\n${name} Server\n----------------------------------\n`)
-console.log("🏗️  Starting ABOT...");
-console.log("📦 Loading Slack App...")
-console.log("🔑 Loading environment variables...")
+console.log(
+    `----------------------------------\n${name} Server\n----------------------------------\n`
+)
+console.log('🏗️  Starting ABOT...')
+console.log('📦 Loading Slack App...')
+console.log('🔑 Loading environment variables...')
 
 const slackApp = new SlackApp({
     env: {
@@ -22,9 +24,9 @@ const slackApp = new SlackApp({
 })
 const slackClient = slackApp.client
 
-console.log(`⚒️  Loading ${Object.entries(features).length} features...`);
+console.log(`⚒️  Loading ${Object.entries(features).length} features...`)
 for (const [feature, handler] of Object.entries(features)) {
-    console.log(`📦 ${feature} loaded`);
+    console.log(`📦 ${feature} loaded`)
     if (typeof handler === 'function') {
         handler()
     }
@@ -49,11 +51,16 @@ export default {
     },
 }
 
-console.log(`🚀 Server Started in ${Bun.nanoseconds() / 1000000} milliseconds on version: ${version}!\n\n----------------------------------\n`,)
+console.log(
+    `🚀 Server Started in ${Bun.nanoseconds() / 1000000} milliseconds on version: ${version}!\n\n----------------------------------\n`
+)
 
-blog(t("app.startup", {
-    environment
-}), "start")
-console.log("\n----------------------------------\n")
+blog(
+    t('app.startup', {
+        environment,
+    }),
+    'start'
+)
+console.log('\n----------------------------------\n')
 
 export { slackApp, slackClient, version, name, environment }
