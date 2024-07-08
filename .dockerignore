@@ -1,0 +1,11 @@
+.env
+prod.env
+node_modules/*
+.vscode/*
+yarn.lock
+dist/
+ignore/
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/
