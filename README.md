@@ -34,7 +34,10 @@ bun install
 
 ### Running the Slackbot
 
+First migrate the db so you have a local copy of the database then you can run the dev script to start the server! 
+
 ```bash
+bunx prisma migrate dev --name db
 bun run dev
 ```
 

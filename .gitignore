@@ -173,3 +173,8 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/
