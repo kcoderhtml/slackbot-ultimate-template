@@ -13,3 +13,5 @@ services:
       - SLACK_SIGNING_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       - ADMINS=U0xxxxxxxxx # comma separated list of slack user IDs
     init: true
+    volumes:
+      - ./data:/app/prisma/data
