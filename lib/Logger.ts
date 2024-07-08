@@ -28,7 +28,7 @@ async function slog(
         thread_ts?: string
         channel: string
     }
-) {
+): Promise<void> {
     const message: ChatPostMessageRequest = {
         channel: location?.channel || process.env.SLACK_LOG_CHANNEL!,
         thread_ts: location?.thread_ts,
@@ -61,7 +61,7 @@ async function slog(
 
 type LogType = 'info' | 'start' | 'cron' | 'error'
 
-export const clog = async (logMessage: string, type: LogType) => {
+export async function clog(logMessage: string, type: LogType): Promise<void> {
     switch (type) {
         case 'info':
             console.log(colors.blue(logMessage))
@@ -84,14 +84,14 @@ export const clog = async (logMessage: string, type: LogType) => {
     }
 }
 
-export const blog = async (
+export async function blog(
     logMessage: string,
     type: LogType,
     location?: {
         thread_ts?: string
         channel: string
     }
-) => {
+): Promise<void> {
     slog(logMessage, location)
     clog(logMessage, type)
 }
