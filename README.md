@@ -48,6 +48,20 @@ You probably also want to run the ngrok tunnel so that your slackbot can get eve
 bun run ngrok
 ```
 
+## Development
+
+If you change the schema.prisma file you will need to run the following command to update the database schema
+
+```bash
+bunx prisma migrate dev
+```
+
+alternatively you can use the db push command which is a more prod friendly command
+
+```bash
+bunx prisma db push
+```
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
