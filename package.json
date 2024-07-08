@@ -15,5 +15,11 @@
   "dependencies": {
     "slack-edge": "^0.13.3",
     "yaml": "^2.4.5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }
