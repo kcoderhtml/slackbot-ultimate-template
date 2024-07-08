@@ -99,7 +99,8 @@ This project uses the logging system developed by @jaspermayone (with some modif
 
 The system is stored in `lib/Logger.ts` and its queuing system is stored in `lib/queue.ts`. The logger exports 3 functions: `slog`, `clog`, and `blog`.
 
--   `slog` is for sending messages to slack and takes a `logMessage` string and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to. 
+#### Slog:
+`slog` is for sending messages to slack and takes a `logMessage` string and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to. 
 ```typescript
 async function slog(
     logMessage: string,
@@ -110,7 +111,8 @@ async function slog(
 ): Promise<void>
 ```
 
--   `clog` is for sending messages to the console and takes a `logMessage` string and a manditory `type` string that is the type of the message (info, warn, error, etc) and logs the message to the console with a color based on the type.
+#### Clog
+`clog` is for sending messages to the console and takes a `logMessage` string and a manditory `type` string that is the type of the message (info, warn, error, etc) and logs the message to the console with a color based on the type.
 ```typescript
 async function clog(
     logMessage: string,
@@ -120,7 +122,8 @@ async function clog(
 type LogType = 'info' | 'start' | 'cron' | 'error'
 ```
 
--  `blog` is for sending messages to both slack and the console and takes a `logMessage` string, a manditory `type` string that is the type of the message (info, warn, error, etc), and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to.
+#### Blog
+`blog` is for sending messages to both slack and the console and takes a `logMessage` string, a manditory `type` string that is the type of the message (info, warn, error, etc), and an optional `location` object that provides the `channel` and `thread_ts` of the message that the logger is responding to.
 ```typescript
 async function blog(
     logMessage: string,
