@@ -3,7 +3,9 @@ import { SlackApp } from 'slack-edge'
 import * as features from './features/index'
 
 import { t } from './lib/template'
+import { blog } from './lib/Logger'
 const { version, name } = require('./package.json')
+const environment = process.env.NODE_ENV
 
 console.log(`----------------------------------\n${name} Server\n----------------------------------\n`)
 console.log("🏗️  Starting ABOT...");
@@ -49,4 +51,9 @@ export default {
 
 console.log(`🚀 Server Started in ${Bun.nanoseconds() / 1000000} milliseconds on version: ${version}!\n\n----------------------------------\n`,)
 
-export { slackApp, slackClient, version, name }
+blog(t("app.startup", {
+    environment
+}), "start")
+console.log("\n----------------------------------\n")
+
+export { slackApp, slackClient, version, name, environment }
