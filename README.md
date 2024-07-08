@@ -134,6 +134,24 @@ async function blog(
 type LogType = 'info' | 'start' | 'cron' | 'error'
 ```
 
+### Feature system
+
+The feature system is based on writing your features as seperate independent files in the `features/` directory each exporting a single default async inline function with a void promise. These functions are exported in the `features/index.ts` file and are then imported and ran at startup in `index.ts`. The features are run in the order that they are imported in the `features/index.ts` file and will log their name as exported in the `features/index.ts` file.
+
+#### Example:  
+`features/feature.ts`
+```typescript
+const feature = async (): Promise<void> => {
+    // do something
+}
+
+export default feature
+```
+`features/index.ts`
+```typescript
+export { default as feature } from './feature'
+```
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
