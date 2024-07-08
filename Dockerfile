@@ -16,6 +16,7 @@ COPY . .
 RUN bun install
 
 # Generate Prisma Client
+RUN bunx prisma generate
 RUN bunx prisma db push
 
 # Start the server by default, this can be overwritten at runtime
