@@ -38,5 +38,11 @@ bun install
 bun run dev
 ```
 
+You probably also want to run the ngrok tunnel so that your slackbot can get events from slack (double check the package.json to make sure that you changed the url to your ngrok url)
+
+```bash
+bun run ngrok
+```
+
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
