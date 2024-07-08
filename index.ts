@@ -1,5 +1,7 @@
 import { SlackApp } from 'slack-edge'
 
+import { PrismaClient } from "@prisma/client";
+
 import * as features from './features/index'
 
 import { t } from './lib/template'
@@ -51,6 +53,12 @@ export default {
     },
 }
 
+// loading db
+console.log(`⛁  Loading DB...`);
+const prisma = new PrismaClient();
+// list days of analytics
+console.log(`📅 Loaded ${await prisma.analytics.count()} days of analytics.`);
+
 console.log(
     `🚀 Server Started in ${Bun.nanoseconds() / 1000000} milliseconds on version: ${version}!\n\n----------------------------------\n`
 )
@@ -63,4 +71,4 @@ blog(
 )
 console.log('\n----------------------------------\n')
 
-export { slackApp, slackClient, version, name, environment }
+export { slackApp, slackClient, version, name, environment, prisma }
