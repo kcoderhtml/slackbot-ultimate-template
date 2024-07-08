@@ -3,7 +3,7 @@ services:
   server:
     ports:
       - 3000:3000
-    image: ghcr.io/kcoderhtm/slackbot-ultimate-template:latest
+    image: ghcr.io/kcoderhtml/slackbot-ultimate-template:latest
     restart: unless-stopped
     environment:
       - NODE_ENV=production
