@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# slackbot-ultimate-template
+# The Ultimate _(hopefully?)_ Slackbot template
 
 For the ultimate slackbot experience, use this template to get started with your own slackbot!
 
